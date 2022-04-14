@@ -1,10 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { ThemeProvider } from "styled-components";
 import { theme } from "../theme/theme";
 import GlobalStyles from "../theme/GlobalStyles";
 import Header from "../components/organisms/Header/Header";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Main = ({ children }) => {
+  useEffect(() => {
+    AOS.init({
+      offset: 200,
+      duration: 1000,
+      easing: [0.33, 1, 0.68, 1],
+      once: false,
+      anchorPlacement: "top-bottom",
+    });
+  }, []);
+
   return (
     <>
       {/* <Helmet>
@@ -25,8 +37,10 @@ const Main = ({ children }) => {
       </Helmet> */}
       <ThemeProvider theme={theme}>
         <GlobalStyles />
-        <Header />
-        <main>{children}</main>
+        <div>
+          <Header />
+          <main>{children}</main>
+        </div>
         {/* <Cookies
           canBeDisplayed={canBeDisplayedCookie}
           setCanBeDisplayed={setCanBeDisplayedCookie}

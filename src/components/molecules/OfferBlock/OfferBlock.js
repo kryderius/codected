@@ -74,12 +74,12 @@ const StyledGatsbyImage = styled(GatsbyImage)`
 const OfferBlock = ({ image, altImage, isRight, subheadline, headline, text }) => {
   return (
     <BlockWrapper className={isRight && "isRight"}>
-      <LeftWrapper className={isRight && "isRight"}>
+      <LeftWrapper className={isRight && "isRight"} data-aos="fade-down">
         <StyledSubheadline>{subheadline}</StyledSubheadline>
         <StyledHeadline>{headline}</StyledHeadline>
         <StyledText>{text}</StyledText>
       </LeftWrapper>
-      <RightWrapper className={isRight && "isRight"}>
+      <RightWrapper className={isRight && "isRight"} data-aos="fade-up">
         <StyledGatsbyImage image={image} alt={altImage} />
       </RightWrapper>
     </BlockWrapper>

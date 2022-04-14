@@ -5,6 +5,7 @@ import { graphql, useStaticQuery } from "gatsby";
 
 const OfferSection = styled.section`
   margin: 100px 0;
+  position: relative;
 `;
 
 const OfferContainer = styled.div`
@@ -19,7 +20,7 @@ const OfferContainer = styled.div`
 const Offer = () => {
   const data = useStaticQuery(query);
   return (
-    <OfferSection>
+    <OfferSection id="offer">
       <OfferContainer>
         <OfferBlock
           image={data.wwwImg.childImageSharp.gatsbyImageData}
@@ -35,6 +36,7 @@ const Offer = () => {
           text="Chcesz zatrudnić handlowca, który będzie do dyspozycji 24/7? Zainwestuj w stronę www i zyskaj więcej. Dedykowane rozwiązania webowe oparte o React, Gatsby, Vue, WordPress i wiele więcej."
         />
         <OfferBlock
+          data-aos="fade-up"
           image={data.appImg.childImageSharp.gatsbyImageData}
           subheadline="Bądź wyjątkowy"
           headline="Aplikacje webowe i programowanie"

@@ -33,7 +33,7 @@ const StyledBigBox = styled.img`
   width: 26%;
   top: 10%;
   left: 25%;
-  animation: bigBox 4s infinite;
+  animation: bigBox 3s ease-in-out infinite alternate;
 
   @keyframes bigBox {
     0% {
@@ -43,7 +43,7 @@ const StyledBigBox = styled.img`
       transform: translateY(-5%);
     }
     100% {
-      transform: translateY(5%);
+      transform: translateY(10%);
     }
   }
 `;

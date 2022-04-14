@@ -4,6 +4,7 @@ import Headline from "../../atoms/Headline/Headline";
 import Text from "../../atoms/Text/Text";
 import AnimatedSVG from "../../molecules/AnimatedSVG/AnimatedSVG";
 import Button from "../../atoms/Button/Button";
+import { SplitText } from "@cyriacbr/react-split-text";
 
 const HeroSection = styled.section`
   min-height: 100vh;
@@ -12,6 +13,7 @@ const HeroSection = styled.section`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  position: relative;
 `;
 
 const HeroContainer = styled.div`
@@ -40,6 +42,18 @@ const LeftWrapper = styled.div`
 
 const StyledHeadline = styled(Headline)`
   margin-bottom: 25px;
+
+  div div {
+    overflow: hidden;
+    line-height: 1.25;
+  }
+
+  .wrapper {
+    line-height: 110%;
+    position: relative;
+    display: inline-block;
+    overflow: visible !important;
+  }
 `;
 
 const StyledText = styled(Text)`
@@ -68,13 +82,26 @@ const RightWrapper = styled.div`
 
 const Hero = () => {
   return (
-    <HeroSection>
+    <HeroSection id="hero">
       <HeroContainer>
         <LeftWrapper>
           <StyledHeadline>
-            Postaw na rozwój swojego <span className="violet">biznesu</span>.
+            <SplitText
+              LetterWrapper={({ countIndex, children }) => (
+                <span
+                  className="wrapper"
+                  data-aos="hero-headline"
+                  data-aos-duration="100"
+                  data-aos-delay={`${countIndex}00` / 2}
+                >
+                  {children}
+                </span>
+              )}
+            >
+              Postaw na rozwój swojego biznesu.
+            </SplitText>
           </StyledHeadline>
-          <StyledText>
+          <StyledText data-aos="fade-up" data-aos-delay="300">
             Tworzymy zaawansowane strony www oraz aplikacje webowe, a także zajmujemy się Twoim wizerunkiem marki.
           </StyledText>
           <Button link="/#">Chcę zyskać</Button>
