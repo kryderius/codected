@@ -8,6 +8,7 @@ import "aos/dist/aos.css";
 import styled from "styled-components";
 import { Helmet } from "react-helmet";
 import { useLocation } from "@reach/router";
+import ogImageSrc from "../assets/images/ogimage.png";
 
 const DevelopmentInfo = styled.div`
   position: fixed;
@@ -86,6 +87,7 @@ const Main = ({ children, title, metaDescription, ogUrl, ogTitle, ogImage, ogIma
   }, []);
 
   const location = useLocation();
+  console.log(location);
 
   return (
     <>
@@ -108,7 +110,7 @@ const Main = ({ children, title, metaDescription, ogUrl, ogTitle, ogImage, ogIma
           property="og:title"
           content={ogTitle ? ogTitle : "Agencja interaktywna - strony www, sklepy, programowanie"}
         />
-        <meta property="og:image" content={ogImage ? ogImage : `${location.href}ogimage.png`} />
+        <meta property="og:image" content={ogImage ? ogImage : location.origin + "/ogimage.png"} />
         <meta property="og:image:alt" content={ogImageAlt ? ogImageAlt : "Agencja interaktywna codected.pl"} />
         <meta
           property="og:description"
