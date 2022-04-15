@@ -93,7 +93,10 @@ const ContactForm = ({ setFormSubmitted, setFormError }) => {
           setFormError(true);
         }
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        setFormSubmitted(false);
+        setFormError(true);
+      });
   };
 
   return (

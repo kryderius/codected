@@ -20,6 +20,7 @@ const OfferContainer = styled.div`
 
 const StyledHeadline = styled(Headline)`
   margin-bottom: 100px;
+
   @media (min-width: 1200px) {
     font-size: 40px;
   }
@@ -49,7 +50,7 @@ const Technologies = () => {
   return (
     <TechnologiesSection id="technologies">
       <OfferContainer>
-        <StyledHeadline>
+        <StyledHeadline data-aos="fade-up">
           Najlepsze <span className="violet">technologie</span> dla Ciebie
         </StyledHeadline>
         <LogosWrapper>

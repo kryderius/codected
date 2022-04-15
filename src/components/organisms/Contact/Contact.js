@@ -106,7 +106,7 @@ const Contact = () => {
 
   const data = useStaticQuery(query);
   return (
-    <ContactSection>
+    <ContactSection id="contact">
       {formSubmitted && (
         <SubmitSuccessfull>
           <SubmitText>Pomyślnie wysłano wiadomość</SubmitText>
@@ -114,12 +114,12 @@ const Contact = () => {
         </SubmitSuccessfull>
       )}
       <ContactContainer>
-        <LeftWrapper>
+        <LeftWrapper data-aos="fade-right">
           <StyledGatsbyImage image={data.stayCodected.childImageSharp.gatsbyImageData} alt="Kontakt Codected" />
         </LeftWrapper>
 
         <RightWrapper>
-          <StyledHeadline>Kontakt</StyledHeadline>
+          <StyledHeadline data-aos="fade-down">Kontakt</StyledHeadline>
           <StyledText>
             Teraz jest czas na Twoją kolej! Wyślij nam wiadomość - to nic nie kosztuje. Odezwiemy się do Ciebie jak
             najszybciej.

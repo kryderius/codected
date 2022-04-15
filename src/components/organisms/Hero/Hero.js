@@ -5,13 +5,13 @@ import Text from "../../atoms/Text/Text";
 import AnimatedSVG from "../../molecules/AnimatedSVG/AnimatedSVG";
 import Button from "../../atoms/Button/Button";
 import { SplitText } from "@cyriacbr/react-split-text";
+import scrollToSection from "../../../hooks/sctollTo";
 
 const HeroSection = styled.section`
   min-height: 100vh;
   padding-top: 80px;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
   position: relative;
 `;
@@ -104,7 +104,7 @@ const Hero = () => {
           <StyledText data-aos="fade-up" data-aos-delay="300">
             Tworzymy zaawansowane strony www oraz aplikacje webowe, a także zajmujemy się Twoim wizerunkiem marki.
           </StyledText>
-          <Button link="/#">Chcę zyskać</Button>
+          <Button onClick={(e) => scrollToSection(e, "contact")}>Chcę zyskać</Button>
         </LeftWrapper>
         <RightWrapper>
           <AnimatedSVG />

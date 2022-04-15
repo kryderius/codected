@@ -16,8 +16,8 @@ const ButtonWrapper = styled.button`
   font-weight: ${({ theme }) => theme.regular};
 `;
 
-const Button = ({ link, children }) => {
-  return <ButtonWrapper>{children}</ButtonWrapper>;
+const Button = ({ link, children, onClick }) => {
+  return <ButtonWrapper onClick={onClick}>{children}</ButtonWrapper>;
 };
 
 export default Button;

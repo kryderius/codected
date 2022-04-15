@@ -8,6 +8,7 @@ const BoxWrapper = styled.div`
   position: relative;
   border-radius: 20px;
   transition: all 0.3s ease-in-out;
+  margin-bottom: 50px;
 
   &:hover {
     box-shadow: 0px 24px 50px rgba(0, 0, 0, 0.12);
@@ -16,11 +17,20 @@ const BoxWrapper = styled.div`
       transform: scale(1.1);
     }
   }
+
+  @media (min-width: 992px) {
+    margin-bottom: 0;
+
+    &.hasMargin {
+      margin-bottom: 8vw;
+    }
+  }
 `;
 
-const LinkWrapper = styled(Link)`
+const LinkWrapper = styled.div`
   width: 100%;
   height: 100%;
+  cursor: pointer;
 `;
 
 const StyledGatsbyImage = styled(GatsbyImage)`
@@ -48,10 +58,10 @@ const Text = styled.p`
   font-weight: ${({ theme }) => theme.light};
 `;
 
-const PortfolioItem = ({ image, imgAlt, link, title, text }) => {
+const PortfolioItem = ({ image, imgAlt, title, text, hasMargin, setIsUnavailable }) => {
   return (
-    <BoxWrapper>
-      <LinkWrapper to={link}>
+    <BoxWrapper className={hasMargin && "hasMargin"}>
+      <LinkWrapper onClick={(e) => setIsUnavailable(true)}>
         <StyledGatsbyImage image={image} alt={imgAlt} />
         <TextWrapper>
           <Title>{title}</Title>

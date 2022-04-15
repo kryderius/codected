@@ -9,7 +9,10 @@ import Contact from "../components/organisms/Contact/Contact";
 
 const IndexPage = () => {
   return (
-    <Main>
+    <Main
+      title="Agencja interaktywna - strony www, sklepy i programowanie"
+      metaDescription="Zdobądź nowych klientów i zwiększ widoczność w sieci. Projektujemy sklepy e-commerce, strony internetowe, aplikacje i materiały reklamowe."
+    >
       <div data-scroll-section>
         <Hero />
         <Offer />
