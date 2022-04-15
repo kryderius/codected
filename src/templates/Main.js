@@ -110,7 +110,7 @@ const Main = ({ children, title, metaDescription, ogUrl, ogTitle, ogImage, ogIma
           property="og:title"
           content={ogTitle ? ogTitle : "Agencja interaktywna - strony www, sklepy, programowanie"}
         />
-        <meta property="og:image" content={ogImage ? ogImage : location.origin + "/ogimage.png"} />
+        <meta property="og:image" content={ogImage ? ogImage : `${location.origin}/ogimage.png"`} />
         <meta property="og:image:alt" content={ogImageAlt ? ogImageAlt : "Agencja interaktywna codected.pl"} />
         <meta
           property="og:description"
