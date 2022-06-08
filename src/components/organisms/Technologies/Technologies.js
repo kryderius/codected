@@ -50,7 +50,7 @@ const Technologies = () => {
   return (
     <TechnologiesSection id="technologies">
       <OfferContainer>
-        <StyledHeadline data-aos="fade-up">
+        <StyledHeadline data-aos="headline-fadedown">
           Najlepsze <span className="violet">technologie</span> dla Ciebie
         </StyledHeadline>
         <LogosWrapper>

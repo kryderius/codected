@@ -33,21 +33,21 @@ const Offer = () => {
           image={data.shopImg.childImageSharp.gatsbyImageData}
           subheadline="Sprzedawaj online"
           headline="Sklepy www"
-          text="Chcesz zatrudnić handlowca, który będzie do dyspozycji 24/7? Zainwestuj w stronę www i zyskaj więcej. Dedykowane rozwiązania webowe oparte o React, Gatsby, Vue, WordPress i wiele więcej."
+          text="Zacznij zarabiać sprzedając swoje produkty w Internecie. Stworzymy dla Ciebie platformę e-commerce, z którą osiągniesz najwyżej postawione cele."
         />
         <OfferBlock
           data-aos="fade-up"
           image={data.appImg.childImageSharp.gatsbyImageData}
           subheadline="Bądź wyjątkowy"
           headline="Aplikacje webowe i programowanie"
-          text="Chcesz zatrudnić handlowca, który będzie do dyspozycji 24/7? Zainwestuj w stronę www i zyskaj więcej. Dedykowane rozwiązania webowe oparte o React, Gatsby, Vue, WordPress i wiele więcej."
+          text="Potrzebujesz czegoś wyjątkowego, jedynego w swoim rodzaju? W Codected nie mamy żadnych granic. Od aplikacji webowych po mobilne - React, Vue, NodeJS... a to tylko namiastka naszych możliwości. "
         />
         <OfferBlock
           isRight
           image={data.graphicImg.childImageSharp.gatsbyImageData}
           subheadline="Wyróżnij się"
           headline="Grafika i branding"
-          text="Chcesz zatrudnić handlowca, który będzie do dyspozycji 24/7? Zainwestuj w stronę www i zyskaj więcej. Dedykowane rozwiązania webowe oparte o React, Gatsby, Vue, WordPress i wiele więcej."
+          text="Identyfikacja wizualna marki to podstawa. Zadbamy o to, aby Twoje logo było rozpoznawalne, a projekty graficzne zapadały w pamięć każdemu."
         />
       </OfferContainer>
     </OfferSection>

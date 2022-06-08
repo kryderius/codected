@@ -27,6 +27,28 @@ const GlobalStyles = createGlobalStyle`
     opacity: 1;
   }
 }
+
+[data-aos="headline-fadeup"] {
+  transform: translateY(20px);
+  opacity: 0;
+  transition-property: transform, opacity;
+
+  &.aos-animate {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+[data-aos="headline-fadedown"] {
+  transform: translateY(-20px);
+  opacity: 0;
+  transition-property: transform, opacity;
+
+  &.aos-animate {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
 `;
 
 export default GlobalStyles;

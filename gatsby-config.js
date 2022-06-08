@@ -1,8 +1,8 @@
 const path = require(`path`);
 module.exports = {
   siteMetadata: {
-    title: `Codected`,
-    siteUrl: `https://www.yourdomain.tld`,
+    title: `Codected.eu`,
+    siteUrl: `https://codected.eu`,
   },
   plugins: [
     "gatsby-plugin-styled-components",
@@ -44,5 +44,13 @@ module.exports = {
       },
     },
     "gatsby-plugin-react-helmet",
+    "gatsby-plugin-sitemap",
+    {
+      resolve: "gatsby-plugin-robots-txt",
+      options: {
+        host: "https://codected.eu",
+        sitemap: "https://codected.eu/sitemap/sitemap-index.xml",
+      },
+    },
   ],
 };

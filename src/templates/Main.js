@@ -8,6 +8,7 @@ import "aos/dist/aos.css";
 import styled from "styled-components";
 import { Helmet } from "react-helmet";
 import { useLocation } from "@reach/router";
+import Footer from "../components/organisms/Footer/Footer";
 
 const DevelopmentInfo = styled.div`
   position: fixed;
@@ -78,7 +79,7 @@ const Main = ({ children, title, metaDescription, ogUrl, ogTitle, ogImage, ogIma
   useEffect(() => {
     AOS.init({
       offset: 200,
-      duration: 1000,
+      duration: 1300,
       easing: [0.33, 1, 0.68, 1],
       once: false,
       anchorPlacement: "top-bottom",
@@ -93,7 +94,7 @@ const Main = ({ children, title, metaDescription, ogUrl, ogTitle, ogImage, ogIma
       <Helmet>
         <meta charSet="utf-8" />
         <title>
-          {title ? `${title} | Codected.pl` : `Agencja interaktywna - strony www, sklepy, programowanie | Codected.pl`}
+          {title ? `${title} | Codected.eu` : `Agencja interaktywna - strony www, sklepy, programowanie | Codected.eu`}
         </title>
         <meta
           name="description"
@@ -103,17 +104,14 @@ const Main = ({ children, title, metaDescription, ogUrl, ogTitle, ogImage, ogIma
               : "Tworzymy zaawansowane strony www oraz aplikacje webowe, a także zajmujemy się Twoim wizerunkiem marki."
           }
         />
-        <meta property="og:url" content={ogUrl ? ogUrl : "https://codected.pl"} />
+        <meta property="og:url" content={ogUrl ? ogUrl : "https://codected.eu"} />
         <meta property="og:type" content="website" />
         <meta
           property="og:title"
           content={ogTitle ? ogTitle : "Agencja interaktywna - strony www, sklepy, programowanie"}
         />
-        <meta
-          property="og:image"
-          content={ogImage ? ogImage : `https://aesthetic-granita-e0ca81.netlify.app/ogimage.png`}
-        />
-        <meta property="og:image:alt" content={ogImageAlt ? ogImageAlt : "Agencja interaktywna codected.pl"} />
+        <meta property="og:image" content={ogImage ? ogImage : `https://codected.eu/ogimage.png`} />
+        <meta property="og:image:alt" content={ogImageAlt ? ogImageAlt : "Agencja interaktywna codected.eu"} />
         <meta
           property="og:description"
           content={
@@ -122,7 +120,7 @@ const Main = ({ children, title, metaDescription, ogUrl, ogTitle, ogImage, ogIma
               : "Tworzymy zaawansowane strony www oraz aplikacje webowe, a także zajmujemy się Twoim wizerunkiem marki."
           }
         />
-        <meta property="og:site_name" content={ogSiteName ? ogSiteName : "Codected.pl"} />
+        <meta property="og:site_name" content={ogSiteName ? ogSiteName : "Codected.eu"} />
         <meta property="og:locale" content="pl_PL" />
       </Helmet>
       <ThemeProvider theme={theme}>
@@ -130,6 +128,7 @@ const Main = ({ children, title, metaDescription, ogUrl, ogTitle, ogImage, ogIma
         <div>
           <Header />
           <main>{children}</main>
+          <Footer />
         </div>
         <DevelopmentInfo className={isDevInfo && "active"}>
           <DevelopmentInfoText>Strona znajduje się jeszcze w fazie budowy.</DevelopmentInfoText>

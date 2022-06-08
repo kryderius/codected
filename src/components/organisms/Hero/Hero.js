@@ -101,7 +101,7 @@ const Hero = () => {
               Postaw na rozwój swojego biznesu.
             </SplitText>
           </StyledHeadline>
-          <StyledText data-aos="fade-up" data-aos-delay="300">
+          <StyledText data-aos="headline-fadeup" data-aos-delay="300">
             Tworzymy zaawansowane strony www oraz aplikacje webowe, a także zajmujemy się Twoim wizerunkiem marki.
           </StyledText>
           <Button onClick={(e) => scrollToSection(e, "contact")}>Chcę zyskać</Button>

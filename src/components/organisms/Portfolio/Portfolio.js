@@ -126,7 +126,7 @@ const Portfolio = () => {
         <DevelopmentInfoButton onClick={(e) => setIsUnavailable(false)}>Rozumiem</DevelopmentInfoButton>
       </DevelopmentInfo>
       <PortfolioContainer>
-        <StyledHeadline data-aos="fade-up">
+        <StyledHeadline data-aos="headline-fadedown">
           Nasze <span className="violet">genialne</span> realizacje
         </StyledHeadline>
         <PortfolioColumns>

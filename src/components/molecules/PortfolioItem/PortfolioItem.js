@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 
 const BoxWrapper = styled.div`

@@ -64,6 +64,8 @@ const SubmitSuccessfull = styled.div`
   left: 50%;
   width: 90%;
   max-width: 650px;
+  padding: 15px 30px;
+  text-align: center;
   height: 200px;
   background-color: ${({ theme }) => theme.violet};
   border-radius: 20px;
@@ -113,13 +115,22 @@ const Contact = () => {
           <SubmitButton onClick={handleCloseButton}>Zamknij</SubmitButton>
         </SubmitSuccessfull>
       )}
+
+      {formError && (
+        <SubmitSuccessfull>
+          <SubmitText>
+            Niestety wystąpił błąd! Prosimy o wysłanie wiadomości bezpośrednio na nasz adres email.
+          </SubmitText>
+          <SubmitButton onClick={handleCloseButton}>Zamknij</SubmitButton>
+        </SubmitSuccessfull>
+      )}
       <ContactContainer>
         <LeftWrapper data-aos="fade-right">
           <StyledGatsbyImage image={data.stayCodected.childImageSharp.gatsbyImageData} alt="Kontakt Codected" />
         </LeftWrapper>
 
         <RightWrapper>
-          <StyledHeadline data-aos="fade-down">Kontakt</StyledHeadline>
+          <StyledHeadline data-aos="headline-fadedown">Kontakt</StyledHeadline>
           <StyledText>
             Teraz jest czas na Twoją kolej! Wyślij nam wiadomość - to nic nie kosztuje. Odezwiemy się do Ciebie jak
             najszybciej.
