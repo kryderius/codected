@@ -16,6 +16,10 @@ const OfferContainer = styled.div`
     flex-direction: row;
     margin: 0 8%;
   }
+
+  @media (min-width: 2000px) {
+    margin: 0 25%;
+  }
 `;
 
 const StyledHeadline = styled(Headline)`

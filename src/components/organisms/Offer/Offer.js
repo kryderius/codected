@@ -15,6 +15,9 @@ const OfferContainer = styled.div`
     flex-direction: row;
     margin: 0 8%;
   }
+  @media (min-width: 2000px) {
+    margin: 0 25%;
+  }
 `;
 
 const Offer = () => {
@@ -27,6 +30,7 @@ const Offer = () => {
           subheadline="Pokaż się z najlepszej strony"
           headline="Strony www"
           text="Chcesz zatrudnić handlowca, który będzie do dyspozycji 24/7? Zainwestuj w stronę www i zyskaj więcej. Dedykowane rozwiązania webowe oparte o React, Gatsby, Vue, WordPress i wiele więcej."
+          link="/oferta/strony-internetowe"
         />
         <OfferBlock
           isRight

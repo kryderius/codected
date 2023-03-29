@@ -9,6 +9,9 @@ import styled from "styled-components";
 import { Helmet } from "react-helmet";
 import { useLocation } from "@reach/router";
 import Footer from "../components/organisms/Footer/Footer";
+import Loader from "../components/organisms/Loader/Loader";
+import { MainContext } from "../context";
+import FooterNew from "../components/organisms/Footer/FooterNew";
 
 const DevelopmentInfo = styled.div`
   position: fixed;
@@ -74,20 +77,30 @@ const DevelopmentInfoButton = styled.button`
   }
 `;
 
+const MainContainer = styled.main`
+  overflow: hidden;
+`;
+
 const Main = ({ children, title, metaDescription, ogUrl, ogTitle, ogImage, ogImageAlt, ogDescription, ogSiteName }) => {
   const [isDevInfo, setIsDevInfo] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
+  const [loaderExit, setLoaderExit] = useState(false);
+
   useEffect(() => {
-    AOS.init({
-      offset: 200,
-      duration: 1300,
-      easing: [0.33, 1, 0.68, 1],
-      once: false,
-      anchorPlacement: "top-bottom",
-    });
+    setTimeout(() => {
+      setIsLoading(false);
+      // setLoaderExit(true);
+      AOS.init({
+        offset: 200,
+        duration: 1300,
+        easing: [0.33, 1, 0.68, 1],
+        once: true,
+        anchorPlacement: "top-bottom",
+      });
+    }, 2000);
   }, []);
 
   const location = useLocation();
-  console.log(location);
 
   return (
     <>
@@ -124,20 +137,29 @@ const Main = ({ children, title, metaDescription, ogUrl, ogTitle, ogImage, ogIma
         <meta property="og:locale" content="pl_PL" />
       </Helmet>
       <ThemeProvider theme={theme}>
-        <GlobalStyles />
-        <div>
-          <Header />
-          <main>{children}</main>
-          <Footer />
-        </div>
-        <DevelopmentInfo className={isDevInfo && "active"}>
-          <DevelopmentInfoText>Strona znajduje się jeszcze w fazie budowy.</DevelopmentInfoText>
-          <DevelopmentInfoButton onClick={(e) => setIsDevInfo(false)}>Rozumiem</DevelopmentInfoButton>
-        </DevelopmentInfo>
-        {/* <Cookies
+        <MainContext.Provider
+          value={{
+            loaderExit,
+            setLoaderExit,
+          }}
+        >
+          <GlobalStyles />
+          <div>
+            <Header />
+            <MainContainer>{children}</MainContainer>
+            {/* <Footer /> */}
+            <FooterNew />
+          </div>
+          <Loader isLoading={isLoading} setLoaderExit={setLoaderExit} />
+          <DevelopmentInfo className={isDevInfo && "active"}>
+            <DevelopmentInfoText>Strona znajduje się jeszcze w fazie budowy.</DevelopmentInfoText>
+            <DevelopmentInfoButton onClick={(e) => setIsDevInfo(false)}>Rozumiem</DevelopmentInfoButton>
+          </DevelopmentInfo>
+          {/* <Cookies
           canBeDisplayed={canBeDisplayedCookie}
           setCanBeDisplayed={setCanBeDisplayedCookie}
         /> */}
+        </MainContext.Provider>
       </ThemeProvider>
     </>
   );

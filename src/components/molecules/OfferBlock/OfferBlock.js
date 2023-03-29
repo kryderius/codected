@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Headline from "../../atoms/Headline/Headline";
 import Text from "../../atoms/Text/Text";
 import { GatsbyImage } from "gatsby-plugin-image";
+import { Link } from "gatsby";
 
 const BlockWrapper = styled.div`
   display: flex;
@@ -71,13 +72,59 @@ const StyledGatsbyImage = styled(GatsbyImage)`
   }
 `;
 
-const OfferBlock = ({ image, altImage, isRight, subheadline, headline, text }) => {
+const StyledLink = styled(Link)`
+  color: ${({ theme }) => theme.violet};
+  font-size: ${({ theme }) => theme.headingM};
+  font-weight: ${({ theme }) => theme.regular};
+  margin-top: 15px;
+  text-decoration: none;
+  position: relative;
+  display: inline-flex;
+  width: fit-content;
+  padding-bottom: 5px;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: ${({ theme }) => theme.violet};
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: ${({ theme }) => theme.violet};
+    transform: translateX(-100%);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
+  }
+
+  &:hover {
+    &::before {
+      transform: translateX(100%);
+    }
+    &::after {
+      transform: translateX(0);
+    }
+  }
+`;
+
+const OfferBlock = ({ image, altImage, isRight, subheadline, headline, text, link }) => {
   return (
     <BlockWrapper className={isRight && "isRight"}>
       <LeftWrapper className={isRight && "isRight"} data-aos="headline-fadeup">
         <StyledSubheadline>{subheadline}</StyledSubheadline>
         <StyledHeadline>{headline}</StyledHeadline>
         <StyledText>{text}</StyledText>
+        {link && <StyledLink to={link}>Zobacz więcej</StyledLink>}
       </LeftWrapper>
       <RightWrapper className={isRight && "isRight"} data-aos="headline-fadedown">
         <StyledGatsbyImage image={image} alt={altImage} />

@@ -22,6 +22,10 @@ const StyledHeader = styled.header`
   @media (min-width: 1200px) {
     height: 130px;
   }
+
+  @media (min-width: 2000px) {
+    padding: 0 25%;
+  }
 `;
 
 const StyledLogo = styled(Link)`
@@ -42,6 +46,10 @@ const Hamburger = styled.button`
   border: none;
   cursor: pointer;
   z-index: 100;
+
+  @media (min-width: 1200px) {
+    display: none;
+  }
 `;
 
 const HamburgerInner = styled.div`
@@ -147,8 +155,159 @@ const BottomLine = styled.span`
   transition: transform 0.3s cubic-bezier(0.33, 1, 0.68, 1);
 `;
 
+const NavDesktop = styled.nav`
+  display: none;
+  background-color: #fff;
+  box-shadow: 0 28px 50px rgba(17, 12, 46, 0.2);
+  padding: 25px;
+  border-radius: 20px;
+
+  @media (min-width: 1200px) {
+    display: flex;
+  }
+`;
+
+const Dropdown = styled.div`
+  position: absolute;
+  bottom: -30px;
+  left: 56%;
+  width: 300px;
+  height: 0px;
+  border-radius: 20px;
+  transform: translate(-50%, 100%);
+  background-color: #fff;
+  opacity: 0;
+  pointer-events: none;
+  box-shadow: 0px 48px 100px rgba(17, 12, 46, 0.15);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: 50% 0;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+`;
+
+const NavDesktopListItem = styled(Link)`
+  color: #1e1e20;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 500;
+  font-family: "Poppins", sans-serif;
+
+  &:not(:last-child) {
+    margin-right: 40px;
+  }
+
+  &:last-child {
+    text-decoration: underline;
+  }
+
+  &.no-margin {
+    margin-right: 0 !important;
+  }
+`;
+
+const NavDesktopListItemHover = styled.div`
+  margin-right: 40px;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 30px;
+    bottom: -30px;
+    left: 0;
+    background-color: transparent;
+  }
+  &:hover ${Dropdown} {
+    opacity: 1;
+    pointer-events: all;
+    height: 290px;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+`;
+
+const DropdownItem = styled(Link)`
+  color: #1e1e20;
+  text-decoration: none;
+  font-size: 20;
+  font-weight: 500;
+  font-family: "Poppins", sans-serif;
+
+  &:not(:last-child) {
+    margin-bottom: 20px;
+  }
+`;
+
+const DevelopmentInfo = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 80%;
+  height: 180px;
+  padding: 15px;
+  background-color: #fff;
+  border: 2px solid ${({ theme }) => theme.violet};
+  border-radius: 10px;
+  transform: translate(-50%, 30%);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 1s cubic-bezier(0.33, 1, 0.68, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  &.active {
+    opacity: 1;
+    pointer-events: all;
+    transform: translate(-50%, -50%);
+
+    @media (min-width: 992px) {
+      /* transform: translate(0); */
+    }
+  }
+
+  @media (min-width: 992px) {
+    /* transform: translate(0, 30%); */
+    max-width: 500px;
+    height: 160px;
+    padding: 30px;
+  }
+`;
+
+const DevelopmentInfoText = styled.p`
+  text-align: center;
+  font-size: ${({ theme }) => theme.bodyXS};
+  font-family: ${({ theme }) => theme.fontFamilyText};
+  line-height: 140%;
+  font-weight: ${({ theme }) => theme.regular};
+  color: ${({ theme }) => theme.black};
+`;
+
+const DevelopmentInfoButton = styled.button`
+  margin-top: 10px;
+  width: 100px;
+  height: 30px;
+  border-radius: 5px;
+  border: 1px solid ${({ theme }) => theme.violet};
+  cursor: pointer;
+  background-color: transparent;
+  color: ${({ theme }) => theme.black};
+  font-size: ${({ theme }) => theme.bodyXS};
+  font-family: ${({ theme }) => theme.fontFamilyHeading};
+  font-weight: ${({ theme }) => theme.regular};
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    color: ${({ theme }) => theme.white};
+    background-color: ${({ theme }) => theme.violet};
+  }
+`;
+
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isUnavailable, setIsUnavailable] = useState(false);
 
   const handleNavClick = (e, target) => {
     scrollToSection(e, target);
@@ -156,6 +315,12 @@ const Header = () => {
   };
   return (
     <StyledHeader>
+      <DevelopmentInfo className={isUnavailable && "active"}>
+        <DevelopmentInfoText>
+          Nie skończyliśmy jeszcze budowy tej podstrony. Wyślij zapytanie za pomocą formularza.
+        </DevelopmentInfoText>
+        <DevelopmentInfoButton onClick={(e) => setIsUnavailable(false)}>Rozumiem</DevelopmentInfoButton>
+      </DevelopmentInfo>
       <StyledLogo to="/">
         <svg width="173" height="30" viewBox="0 0 173 30" fill="none" xmlns="http://www.w3.org/2000/svg">
           <g clip-path="url(#clip0_239_2)">
@@ -230,6 +395,31 @@ const Header = () => {
           </NavListItem>
         </NavList>
       </NavMobile>
+      <NavDesktop>
+        <NavDesktopListItem to="/">Start</NavDesktopListItem>
+        <NavDesktopListItemHover>
+          <NavDesktopListItem to="#offer" className="no-margin" onClick={(e) => scrollToSection(e, "offer")}>
+            Co robimy
+          </NavDesktopListItem>
+          <Dropdown>
+            <DropdownItem to="/oferta/strony-internetowe">Strony internetowe</DropdownItem>
+            <DropdownItem to="#" onClick={(e) => setIsUnavailable(true)}>
+              Sklepy www
+            </DropdownItem>
+            <DropdownItem to="#" onClick={(e) => setIsUnavailable(true)}>
+              Aplikacje webowe i programowanie
+            </DropdownItem>
+            <DropdownItem to="#" onClick={(e) => setIsUnavailable(true)}>
+              Grafika i branding
+            </DropdownItem>
+          </Dropdown>
+        </NavDesktopListItemHover>
+
+        <NavDesktopListItem to="/realizacje">Realizacje</NavDesktopListItem>
+        <NavDesktopListItem to="#contact" onClick={(e) => scrollToSection(e, "contact")}>
+          Darmowa wycena
+        </NavDesktopListItem>
+      </NavDesktop>
     </StyledHeader>
   );
 };

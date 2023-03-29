@@ -49,6 +49,30 @@ const GlobalStyles = createGlobalStyle`
     opacity: 1;
   }
 }
+
+[data-aos="section-fadeup"] {
+  transform: translateY(50%);
+  opacity: 0;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  transition-property: transform, opacity;
+
+  &.aos-animate {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+[data-aos="section-fadedown"] {
+  transform: translateY(-50%);
+  opacity: 0;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  transition-property: transform, opacity;
+
+  &.aos-animate {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
 `;
 
 export default GlobalStyles;

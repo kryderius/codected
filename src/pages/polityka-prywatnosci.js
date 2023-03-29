@@ -43,7 +43,7 @@ const StyledListItem = styled.li`
 
 const PrivacyPolicyPage = () => {
   return (
-    <Main>
+    <Main title="Polityka prywatności">
       <PageHeader>
         <Headline>POLITYKA PRYWATNOŚCI</Headline>
       </PageHeader>

@@ -13,4 +13,8 @@ export default styled.p`
   @media (min-width: 1200px) {
     font-size: ${({ theme }) => theme.bodyS};
   }
+
+  strong {
+    font-weight: ${({ theme }) => theme.bold};
+  }
 `;

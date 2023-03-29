@@ -2,11 +2,19 @@ import { GatsbyImage } from "gatsby-plugin-image";
 import React, { useState } from "react";
 import styled from "styled-components";
 import Headline from "../../atoms/Headline/Headline";
-import { graphql, useStaticQuery } from "gatsby";
+import { graphql, Link, useStaticQuery } from "gatsby";
 import PortfolioItem from "../../molecules/PortfolioItem/PortfolioItem";
+import BlurSVG from "../../../assets/svg/portfolio-blur.svg";
 
 const PortfolioSection = styled.section`
   margin: 200px 0;
+  position: relative;
+
+  .portfolio-blur {
+    position: absolute;
+    top: 20%;
+    left: -20%;
+  }
 `;
 
 const PortfolioContainer = styled.div`
@@ -15,6 +23,10 @@ const PortfolioContainer = styled.div`
   @media (min-width: 992px) {
     flex-direction: row;
     margin: 0 8%;
+  }
+
+  @media (min-width: 2000px) {
+    margin: 0 25%;
   }
 `;
 
@@ -113,12 +125,50 @@ const DevelopmentInfoButton = styled.button`
   }
 `;
 
+const ShowMoreButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+`;
+
+const ShowMoreButton = styled(Link)`
+  color: ${({ theme }) => theme.violet};
+  text-decoration: none;
+  font-weight: ${({ theme }) => theme.medium};
+  font-size: 22px;
+  display: inline-flex;
+  align-items: center;
+  transition: 0.3s cubic-bezier(0.33, 1, 0.68, 1);
+
+  svg {
+    margin-left: 20px;
+    transform: rotate(90deg);
+    transition: 0.3s cubic-bezier(0.33, 1, 0.68, 1);
+
+    path {
+      transition: 0.3s cubic-bezier(0.33, 1, 0.68, 1);
+    }
+  }
+
+  :hover {
+    color: #8654f2;
+    svg {
+      margin-left: 5px;
+
+      path {
+        stroke: #8654f2 !important;
+      }
+    }
+  }
+`;
+
 const Portfolio = () => {
   const [isUnavailable, setIsUnavailable] = useState(false);
   const data = useStaticQuery(query);
 
   return (
     <PortfolioSection id="portfolio">
+      <img className="portfolio-blur" src={BlurSVG} alt="" />
       <DevelopmentInfo className={isUnavailable && "active"}>
         <DevelopmentInfoText>
           Nie skończyliśmy jeszcze budowy tej podstrony, ale niedługo coś tutaj się pojawi.
@@ -134,9 +184,20 @@ const Portfolio = () => {
             <PortfolioItem
               image={data.flameCenter.childImageSharp.gatsbyImageData}
               imgAlt="FlameCenter"
-              // link=""
+              hasLink={true}
+              link="/realizacje/flamecenter"
               title="FlameCenter"
               text="Strona www, logotyp, wizytówki i ulotki"
+              setIsUnavailable={setIsUnavailable}
+              hasMargin
+            />
+            <PortfolioItem
+              image={data.szkolkaLeszka.childImageSharp.gatsbyImageData}
+              imgAlt="Drzewka Leszka"
+              hasLink={true}
+              link="/realizacje/szkolka-leszka"
+              title="Drzewka Leszka"
+              text="Zakodowanie strony z projektu"
               setIsUnavailable={setIsUnavailable}
             />
           </ColumnLeft>
@@ -144,7 +205,8 @@ const Portfolio = () => {
             <PortfolioItem
               image={data.speedCopy.childImageSharp.gatsbyImageData}
               imgAlt="Speed Copy"
-              // link=""
+              hasLink={true}
+              link="/realizacje/speedcopy"
               title="Speed Copy"
               text="Strona www"
               hasMargin
@@ -153,13 +215,28 @@ const Portfolio = () => {
             <PortfolioItem
               image={data.ekowkra.childImageSharp.gatsbyImageData}
               imgAlt="Ekowkra"
-              // link=""
+              hasLink={true}
+              link="/realizacje/ekowkra"
               title="Ekowkra"
               text="Zakodowanie strony www dla firmy RendPro"
               setIsUnavailable={setIsUnavailable}
             />
           </ColumnRight>
         </PortfolioColumns>
+        <ShowMoreButtonContainer>
+          <ShowMoreButton to="/realizacje">
+            Zobacz więcej{" "}
+            <svg width="40px" height="40px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M12 20L12 4L18 10M6 10L9 7"
+                stroke="#530CEB"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </ShowMoreButton>
+        </ShowMoreButtonContainer>
       </PortfolioContainer>
     </PortfolioSection>
   );
@@ -178,6 +255,11 @@ const query = graphql`
       }
     }
     ekowkra: file(name: { eq: "ekowkra" }) {
+      childImageSharp {
+        gatsbyImageData(layout: FULL_WIDTH, quality: 80)
+      }
+    }
+    szkolkaLeszka: file(name: { eq: "szkolka-leszka" }) {
       childImageSharp {
         gatsbyImageData(layout: FULL_WIDTH, quality: 80)
       }

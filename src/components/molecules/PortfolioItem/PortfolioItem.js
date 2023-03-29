@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { GatsbyImage } from "gatsby-plugin-image";
+import { Link } from "gatsby";
 
 const BoxWrapper = styled.div`
   overflow: hidden;
@@ -26,7 +27,7 @@ const BoxWrapper = styled.div`
   }
 `;
 
-const LinkWrapper = styled.div`
+const LinkWrapper = styled(Link)`
   width: 100%;
   height: 100%;
   cursor: pointer;
@@ -57,10 +58,10 @@ const Text = styled.p`
   font-weight: ${({ theme }) => theme.light};
 `;
 
-const PortfolioItem = ({ image, imgAlt, title, text, hasMargin, setIsUnavailable }) => {
+const PortfolioItem = ({ image, imgAlt, title, text, hasMargin, setIsUnavailable, hasLink, link }) => {
   return (
     <BoxWrapper className={hasMargin && "hasMargin"}>
-      <LinkWrapper onClick={(e) => setIsUnavailable(true)}>
+      <LinkWrapper to={hasLink && link} onClick={!hasLink && ((e) => setIsUnavailable(true))}>
         <StyledGatsbyImage image={image} alt={imgAlt} />
         <TextWrapper>
           <Title>{title}</Title>
