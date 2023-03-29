@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
 import axios from "axios";
@@ -70,30 +70,36 @@ const FormWrapper = styled.div`
 `;
 
 const ContactForm = ({ setFormSubmitted, setFormError }) => {
+  const [isLoading, setIsLoading] = useState(false);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data, cartItems) => {
+  const onSubmit = (data) => {
+    setIsLoading(true);
     axios.defaults.headers.post["Content-Type"] = "application/json";
     axios
-      .post("https://formsubmit.co/ajax/krydegamer@gmail.com", {
+      .post("https://formsubmit.co/ajax/kontakt@codected.eu", {
         Name: data.Name,
         Phone: data.Phone,
         Email: data.Email,
+        Message: data.Message,
       })
       .then((response) => {
         if (response.status === 200) {
+          setIsLoading(false);
           setFormSubmitted(true);
           setFormError(false);
         } else {
+          setIsLoading(false);
           setFormSubmitted(false);
           setFormError(true);
         }
       })
       .catch((error) => {
+        setIsLoading(false);
         setFormSubmitted(false);
         setFormError(true);
       });
@@ -103,7 +109,7 @@ const ContactForm = ({ setFormSubmitted, setFormError }) => {
     <FormWrapper>
       <form onSubmit={handleSubmit(onSubmit)}>
         <label className="input-label">
-          <input placeholder="Imię i nazwisko" {...register("Name", { required: true })} />
+          <input placeholder="Imię i nazwisko*" {...register("Name", { required: true })} />
           {errors.Name && <span className="required-info">To pole jest wymagane</span>}
         </label>
         <label className="input-label">
@@ -111,11 +117,15 @@ const ContactForm = ({ setFormSubmitted, setFormError }) => {
           {errors.Phone && <span className="required-info">To pole jest wymagane</span>}
         </label>
         <label className="input-label">
-          <input placeholder="Email" {...register("Email", { required: true })} />
+          <input placeholder="Email*" {...register("Email", { required: true })} />
           {errors.Email && <span className="required-info">To pole jest wymagane</span>}
         </label>
+        <label className="input-label">
+          <input type="textarea" placeholder="Wiadomość*" {...register("Message", { required: true })} />
+          {errors.Message && <span className="required-info">To pole jest wymagane</span>}
+        </label>
         <button type="submit" className="submit-btn">
-          Wyślij
+          {!isLoading ? "Wyślij" : "Wysyłanie..."}
         </button>
       </form>
     </FormWrapper>

@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { graphql, useStaticQuery } from "gatsby";
+import { graphql, navigate, useStaticQuery } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 import Headline from "../../atoms/Headline/Headline";
 import Text from "../../atoms/Text/Text";
@@ -17,6 +17,10 @@ const ContactContainer = styled.div`
     display: flex;
     justify-content: space-between;
     margin: 0 8%;
+  }
+
+  @media (min-width: 2000px) {
+    margin: 0 25%;
   }
 `;
 
@@ -106,15 +110,23 @@ const Contact = () => {
     setFormError(false);
   };
 
+  useEffect(() => {
+    if (formSubmitted == true && formError == false) {
+      setFormSubmitted(false);
+      setFormError(false);
+      navigate("/przeslano-formularz");
+    }
+  }, [formSubmitted]);
+
   const data = useStaticQuery(query);
   return (
     <ContactSection id="contact">
-      {formSubmitted && (
+      {/* {formSubmitted && (
         <SubmitSuccessfull>
           <SubmitText>Pomyślnie wysłano wiadomość</SubmitText>
           <SubmitButton onClick={handleCloseButton}>Zamknij</SubmitButton>
         </SubmitSuccessfull>
-      )}
+      )} */}
 
       {formError && (
         <SubmitSuccessfull>
