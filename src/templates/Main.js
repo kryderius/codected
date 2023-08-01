@@ -1,17 +1,15 @@
-import React, { useEffect, useState } from "react";
-import { ThemeProvider } from "styled-components";
-import { theme } from "../theme/theme";
-import GlobalStyles from "../theme/GlobalStyles";
-import Header from "../components/organisms/Header/Header";
+import { useLocation } from "@reach/router";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import styled from "styled-components";
+import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
-import { useLocation } from "@reach/router";
-import Footer from "../components/organisms/Footer/Footer";
+import styled, { ThemeProvider } from "styled-components";
+import FooterNew from "../components/organisms/Footer/FooterNew";
+import Header from "../components/organisms/Header/Header";
 import Loader from "../components/organisms/Loader/Loader";
 import { MainContext } from "../context";
-import FooterNew from "../components/organisms/Footer/FooterNew";
+import GlobalStyles from "../theme/GlobalStyles";
+import { theme } from "../theme/theme";
 
 const DevelopmentInfo = styled.div`
   position: fixed;
@@ -90,6 +88,7 @@ const Main = ({ children, title, metaDescription, ogUrl, ogTitle, ogImage, ogIma
     setTimeout(() => {
       setIsLoading(false);
       // setLoaderExit(true);
+      // commit from lenovo
       AOS.init({
         offset: 200,
         duration: 1300,
